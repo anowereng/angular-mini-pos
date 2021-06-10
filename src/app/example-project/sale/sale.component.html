@@ -1,0 +1,67 @@
+
+<h2> {{getEnumToString()}} Sale </h2>
+<table border="1">
+    <thead>
+        <td>Id</td>
+        <td> Name</td>
+        <td>Price</td>
+        <td>Stock</td>
+        <td>Action</td>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let x of products">
+            <td>{{x.productId}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.salePrice}}</td>
+            <td>{{x.stock}}</td>
+            <td>
+                <a href="javascript:void(0)" (click)="addToCart(x)" type="button">click</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div [hidden]="model.saleDetails.length == 0">
+<h3>Cart Products</h3>
+
+<table border="1">
+    <thead>
+        <td>Sl</td>
+        <td>Id</td>
+        <td> Name</td>
+        <td>Price</td>
+        <td>Qty</td>
+        <td>Amount</td>
+        <td>Action</td>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let x of model.saleDetails; let i= index">
+            <td>{{i+1}}</td>
+            <td>{{x.productId}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.salePrice}}</td>
+            <td>
+                <input type="number" [(ngModel)]="x.qty" (blur)="getPriceAmount(x)">
+            </td>
+            <td>{{x.amount | number: '1.0-2'}}</td>
+            <td>
+                <a href="javascript:void(0)" (click)="removeCart(x)" type="button">remove</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<br/>
+<br/>
+=================== [Sale] =================
+<br>
+Order: {{model.orderDate}}
+SaleType: {{model.saleType}}<br/>
+Discount: {{model.discount}}<br/>
+TotalQty: {{model.totalQty}}<br/>
+ToalAmount: {{model.toalAmount}}
+
+<br>
+=================== [Sale Details] =================
+<br>
+{{model.saleDetails|json}}
