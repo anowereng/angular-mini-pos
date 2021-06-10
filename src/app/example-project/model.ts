@@ -1,4 +1,4 @@
-import { SaleType, Discount } from './sale-enum';
+import { SaleType } from './sale-enum';
 
 export class Product {
   productId: number;
@@ -22,23 +22,13 @@ export class SaleModel implements ISaleModel {
   saleDetails: SaleDetails[];
   discount: number;
 
-  // getDiscountValue(): number {
-  //   if (this.saleType == SaleType.Customer) {
-  //     return Discount.Customer;
-  //   } else if (this.saleType == SaleType.Dealer) {
-  //     return Discount.Dealer;
-  //   } else {
-  //     return Discount.POS;
-  //   }
-  // }
-
   constructor() {
     this.saleType = SaleType.Unknown;
     this.saleDetails = [];
     this.orderDate = new Date().toDateString();
     this.totalQty = 0;
     this.toalAmount = 0;
-    this.discount =  0 //this.getDiscountValue();
+    this.discount =  0;
   }
 }
 export class SaleDetails extends Product {
@@ -64,6 +54,3 @@ export interface ISaleModel {
   saleDetails: SaleDetails[];
 }
 
-// export interface SaleSettings {
-//   salePersonType: SaleType;
-// }
