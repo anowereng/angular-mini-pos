@@ -1,4 +1,5 @@
 import {
+  ISaleSettings,
   Product,
   SaleDetails,
   SaleModel
@@ -11,6 +12,8 @@ export abstract class SaleRoot {
   constructor() {
     this.model = new SaleModel();
   }
+
+  abstract activate(settings: ISaleSettings): void;
 
   setDiscountValue(): void {
     if (this.model.saleType == SaleType.Customer) {
